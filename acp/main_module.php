@@ -76,9 +76,6 @@ class main_module
 			
 			$schema_id = 1;
 			
-			$db->sql_freeresult($result);
-			
-			// Create add form
 			$sql = "SELECT * FROM " . $phpbb_container->getParameter('tables.clausi.rcm_schema_data') . " WHERE schema_id = '".$schema_id."'";
 			$result = $db->sql_query($sql);
 			
@@ -86,7 +83,7 @@ class main_module
 			{
 				if($row['type'] === 'role')
 				{
-					$template->assign_block_vars('roles', array(
+					$template->assign_block_vars('n_roles', array(
 						'ID' => $row['id'],
 						'NAME' => $row['name']
 					));
@@ -119,7 +116,7 @@ class main_module
 						
 						$url = $this->u_action . "&amp;recruit_id=".$row_recruit['id'];
 						
-						$template->assign_block_vars('roles.recruit', array(
+						$template->assign_block_vars('n_roles.n_recruit', array(
 							'ID' => $row_recruit['id'],
 							'ROLE' => $row['name'],
 							'CLASS' => $class_name,
@@ -132,7 +129,7 @@ class main_module
 				}
 				else if($row['type'] === 'class')
 				{
-					$template->assign_block_vars('classes', array(
+					$template->assign_block_vars('n_classes', array(
 						'ID' => $row['id'],
 						'NAME' => $row['name']
 					));

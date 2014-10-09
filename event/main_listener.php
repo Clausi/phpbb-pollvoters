@@ -50,7 +50,59 @@ class main_listener implements EventSubscriberInterface
 
 	public function create_recruitment_block($event)
 	{
-		global $db, $user, $config;
+		global $db, $user, $config, $phpbb_container;
+		
+		$schema_id = 1;
+		
+		$sql = "SELECT * FROM " . $phpbb_container->getParameter('tables.clausi.rcm_schema_data') . " WHERE schema_id = '".$schema_id."'";
+		$result = $db->sql_query($sql);
+		
+		while($row = $db->sql_fetchrow($result))
+		{
+			if($row['type'] === 'role')
+			{
+				$this->template->assign_block_vars('n_roles', array(
+					'ID' => $row['id'],
+					'NAME' => $row['name']
+				));
+				
+				$sql = "SELECT * FROM " . $phpbb_container->getParameter('tables.clausi.rcm_recruit') . " WHERE schema_id = '".$schema_id."' AND role = '".$row['id']."' ORDER BY class";
+				$result_recruit = $db->sql_query($sql);
+				while($row_recruit = $db->sql_fetchrow($result_recruit))
+				{
+					$sql = "SELECT * FROM " . $phpbb_container->getParameter('tables.clausi.rcm_schema_data') . " WHERE schema_id = '".$schema_id."' AND type = 'class'";
+					$result_class = $db->sql_query($sql);
+					while($row_class = $db->sql_fetchrow($result_class))
+					{
+						if($row_class['id'] === $row_recruit['class'])
+						{
+							$class_name = $row_class['name'];
+						}
+					}
+					$db->sql_freeresult($result_class);
+					
+					switch($row_recruit['urgency']) {
+						case 0:
+							$urgency = $user->lang('RECRUITMENT_LOW');
+							break;
+						case 1:
+							$urgency = $user->lang('RECRUITMENT_MID');
+							break;
+						default:
+							$urgency = $user->lang('RECRUITMENT_HIGH');
+					}
+					
+					$this->template->assign_block_vars('n_roles.n_recruit', array(
+						'ID' => $row_recruit['id'],
+						'ROLE' => $row['name'],
+						'CLASS' => $class_name,
+						'URGENCY' => $urgency,
+					));
+				}
+				
+				$db->sql_freeresult($result_recruit);
+			}
+		}
 		
 		$this->template->assign_vars(array(
 			'S_RECRUITMENT_BLOCK_ACTIVE' => $config['clausi_recruitment_active']

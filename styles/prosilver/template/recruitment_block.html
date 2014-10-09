@@ -8,13 +8,19 @@
 				</dl>
 			</li>
 		</ul>
-		<ul class="topiclist sidebar">
-			<li class="bg1">Row</li>
-			<li class="bg2">Row</li>
-			<li class="bg1">Row</li>
-			<li class="bg2">Row</li>
-			<li class="bg1">Row</li>                     
-		</ul>
+		<!-- BEGIN n_roles -->
+			<!-- IF .n_roles.n_recruit -->
+				<ul class="topiclist">
+					<li class="bg1">{n_roles.NAME}
+						<ul class="topiclist">
+						<!-- BEGIN n_recruit -->
+							<li class="bg1">{n_roles.n_recruit.CLASS}</li>
+						<!-- END n_recruit -->
+						</ul>
+					</li>
+				</ul>
+			<!-- ENDIF -->
+		<!-- END n_roles -->
 	<span class="corners-bottom"><span></span></span></div>
 </div>
 <!-- ENDIF -->

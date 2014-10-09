@@ -1,31 +1,31 @@
 <!-- INCLUDE overall_header.html -->
 
 <h1>{L_ACP_RECRUITMENT}</h1>
-<!-- BEGIN roles -->
-	<!-- IF roles.recruit -->
+<!-- BEGIN n_roles -->
+	<!-- IF .n_roles.n_recruit -->
 	<table class="table1">
 		<col class="row1" /><col class="row1" /><col class="row2" />
 	<thead>
 		<tr>
-			<th colspan="2">{roles.NAME}</th>
+			<th colspan="2">{n_roles.NAME}</th>
 		</tr>
 	</thead>
 	<tbody>
-		<!-- BEGIN recruit -->
+		<!-- BEGIN n_recruit -->
 			<tr>
 				<td class="forum-desc">
-					<strong>{roles.recruit.CLASS}</strong>
-					<br /><span>{roles.recruit.URGENCY}</span>
+					<strong>{n_roles.n_recruit.CLASS}</strong>
+					<br /><span>{n_roles.n_recruit.URGENCY}</span>
 				</td>
 				<td class="actions">
-					<a href="{recruit.U_DELETE}">{ICON_DELETE}</a>
+					<a href="{n_recruit.U_DELETE}">{ICON_DELETE}</a>
 				</td>
 			</tr>
-		<!-- END recruit -->
+		<!-- END n_recruit -->
 	</tbody>
 	</table>
 	<!-- ENDIF -->
-<!-- END roles -->
+<!-- END n_roles -->
 
 <form id="recruitment" method="post" action="{U_ACTION}">
 
@@ -34,15 +34,15 @@
 	<input type="hidden" name="schema" value="{RECRUITMENT_SCHEMA_ID}" />
 
 	<select name="role">
-		<!-- BEGIN roles -->
-			<option value="{roles.ID}">{roles.NAME}</option>
-		<!-- END roles -->
+		<!-- BEGIN n_roles -->
+			<option value="{n_roles.ID}">{n_roles.NAME}</option>
+		<!-- END n_roles -->
 	</select>
 	
 	<select name="class">
-		<!-- BEGIN classes -->
-			<option value="{classes.ID}">{classes.NAME}</option>
-		<!-- END classes -->
+		<!-- BEGIN n_classes -->
+			<option value="{n_classes.ID}">{n_classes.NAME}</option>
+		<!-- END n_classes -->
 	</select>
 	
 	<select name="urgency">
