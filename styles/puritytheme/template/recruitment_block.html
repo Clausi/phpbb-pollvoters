@@ -6,15 +6,17 @@
 	<div class="panel-body">
 		<!-- BEGIN n_roles -->
 			<!-- IF .n_roles.n_recruit -->
-				<ul>
-					<li>{n_roles.NAME}
-						<ul>
-						<!-- BEGIN n_recruit -->
-							<li>{n_roles.n_recruit.CLASS}</li>
-						<!-- END n_recruit -->
+				<div class="panel panel-default">
+					<div class="panel-heading"><h3 class="panel-title">{n_roles.NAME}</h3></div>
+						<ul class="list-group">
+							<!-- BEGIN n_recruit -->
+								<li class="list-group-item no-bg">
+									<span class="badge">{n_roles.n_recruit.URGENCY}</span>
+									{n_roles.n_recruit.CLASS}
+								</li>
+							<!-- END n_recruit -->
 						</ul>
-					</li>
-				</ul>
+					</div>
 			<!-- ENDIF -->
 		<!-- END n_roles -->
 	</div>

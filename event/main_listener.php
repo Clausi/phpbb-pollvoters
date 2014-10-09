@@ -96,6 +96,7 @@ class main_listener implements EventSubscriberInterface
 						'ID' => $row_recruit['id'],
 						'ROLE' => $row['name'],
 						'CLASS' => $class_name,
+						'URGENCY_ID' => $row_recruit['urgency'],
 						'URGENCY' => $urgency,
 					));
 				}
