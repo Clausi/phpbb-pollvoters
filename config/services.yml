@@ -1,0 +1,15 @@
+services:
+    clausi.recruitment.controller:
+        class: clausi\recruitment\controller\main
+        arguments:
+            - @config
+            - @controller.helper
+            - @template
+            - @user
+    clausi.recruitment.listener:
+        class: clausi\recruitment\event\main_listener
+        arguments:
+            - @controller.helper
+            - @template
+        tags:
+            - { name: event.listener }

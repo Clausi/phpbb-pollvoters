@@ -1,0 +1,23 @@
+<!-- IF S_DISPLAY_RECRUITMENT_BLOCK -->
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title"><a href="http://www.wowprogress.com/guild/{REGION}/{REALM}/{GUILD}" title="{GUILD} - Rekrutierung">Rekrutierung</a></h3>
+	</div>
+	<div class="panel-body">
+		<!-- BEGIN n_recruitment -->
+			{n_recruitment.GERMANROLES}<br />
+			<div>
+				<!-- BEGIN n_classes -->
+					<div>
+						<div>{n_recruitment.n_classes.CLASS}<!-- IF n_recruitment.ROLES == 'damage' --> ~ {n_recruitment.n_classes.SPEC}<!-- ENDIF --></div>
+					</div>
+				<!-- END n_classes -->
+			</div>
+			<br />
+		<!-- END n_recruitment -->
+	</div>
+	<div class="panel-footer">
+		<!-- IF S_STARTPAGE --><a href="apply.php" title="Bewerbung">Bewerbung im Forum</a> oder schreibt uns persönlich an!<!-- ENDIF -->
+	</div>
+</div>
+<!-- ENDIF -->
