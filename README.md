@@ -1,4 +1,4 @@
 phpbb-progress
 ================
 
-guild progress extension for phpbb 3.1
+guild recruitment extension for phpbb 3.1
