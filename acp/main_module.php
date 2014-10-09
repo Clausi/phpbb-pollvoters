@@ -92,15 +92,10 @@ class main_module
 					$result_recruit = $db->sql_query($sql);
 					while($row_recruit = $db->sql_fetchrow($result_recruit))
 					{
-						$sql = "SELECT * FROM " . $phpbb_container->getParameter('tables.clausi.rcm_schema_data') . " WHERE schema_id = '".$schema_id."' AND type = 'class'";
+						$sql = "SELECT * FROM " . $phpbb_container->getParameter('tables.clausi.rcm_schema_data') . " WHERE schema_id = '".$schema_id."' AND type = 'class' AND id = '".$row_recruit['class']."'";
 						$result_class = $db->sql_query($sql);
-						while($row_class = $db->sql_fetchrow($result_class))
-						{
-							if($row_class['id'] === $row_recruit['class'])
-							{
-								$class_name = $row_class['name'];
-							}
-						}
+						$row_class = $db->sql_fetchrow($result_class);
+						$class_name = $row_class['name'];
 						$db->sql_freeresult($result_class);
 						
 						switch($row_recruit['urgency']) {
