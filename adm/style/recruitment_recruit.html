@@ -1,31 +1,35 @@
 <!-- INCLUDE overall_header.html -->
 
 <h1>{L_ACP_RECRUITMENT}</h1>
-<!-- BEGIN n_roles -->
-	<!-- IF .n_roles.n_recruit -->
-	<table class="table1">
-		<col class="row1" /><col class="row1" /><col class="row2" />
-	<thead>
-		<tr>
-			<th colspan="2">{n_roles.NAME}</th>
-		</tr>
-	</thead>
-	<tbody>
-		<!-- BEGIN n_recruit -->
+<!-- IF S_RECRUITMENT_ACTIVE -->
+	<!-- BEGIN n_roles -->
+		<!-- IF .n_roles.n_recruit -->
+		<table class="table1">
+			<col class="row1" /><col class="row2" />
+		<thead>
 			<tr>
-				<td class="forum-desc">
-					<strong>{n_roles.n_recruit.CLASS}</strong>
-					<br /><span>{n_roles.n_recruit.URGENCY}</span>
-				</td>
-				<td class="actions">
-					<a href="{n_recruit.U_DELETE}">{ICON_DELETE}</a>
-				</td>
+				<th colspan="2">{n_roles.NAME}</th>
 			</tr>
-		<!-- END n_recruit -->
-	</tbody>
-	</table>
-	<!-- ENDIF -->
-<!-- END n_roles -->
+		</thead>
+		<tbody>
+			<!-- BEGIN n_recruit -->
+				<tr>
+					<td class="forum-desc">
+						<strong>{n_roles.n_recruit.CLASS}</strong>
+						<br /><span>{n_roles.n_recruit.URGENCY}</span>
+					</td>
+					<td class="actions">
+						<a href="{n_recruit.U_DELETE}">{ICON_DELETE}</a>
+					</td>
+				</tr>
+			<!-- END n_recruit -->
+		</tbody>
+		</table>
+		<!-- ENDIF -->
+	<!-- END n_roles -->
+<!-- ELSE -->
+	{L_NO_RECRUITMENT}
+<!-- ENDIF -->
 
 <form id="recruitment" method="post" action="{U_ACTION}">
 

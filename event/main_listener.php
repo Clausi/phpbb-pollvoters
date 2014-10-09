@@ -53,6 +53,7 @@ class main_listener implements EventSubscriberInterface
 		global $db, $user, $config, $phpbb_container;
 		
 		$schema_id = 1;
+		$active_recruitment = false;
 		
 		$sql = "SELECT * FROM " . $phpbb_container->getParameter('tables.clausi.rcm_schema_data') . " WHERE schema_id = '".$schema_id."'";
 		$result = $db->sql_query($sql);
@@ -70,6 +71,8 @@ class main_listener implements EventSubscriberInterface
 				$result_recruit = $db->sql_query($sql);
 				while($row_recruit = $db->sql_fetchrow($result_recruit))
 				{
+					$active_recruitment = true;
+					
 					$sql = "SELECT * FROM " . $phpbb_container->getParameter('tables.clausi.rcm_schema_data') . " WHERE schema_id = '".$schema_id."' AND type = 'class' AND id = '".$row_recruit['class']."'";
 					$result_class = $db->sql_query($sql);
 					$row_class = $db->sql_fetchrow($result_class);
@@ -101,7 +104,8 @@ class main_listener implements EventSubscriberInterface
 		}
 		
 		$this->template->assign_vars(array(
-			'S_RECRUITMENT_BLOCK_ACTIVE' => $config['clausi_recruitment_active']
+			'S_RECRUITMENT_BLOCK_ACTIVE' => $config['clausi_recruitment_active'],
+			'S_RECRUITMENT_ACTIVE' => $active_recruitment,
 		));
 	}
 }

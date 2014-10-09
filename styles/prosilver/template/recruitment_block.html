@@ -8,19 +8,25 @@
 				</dl>
 			</li>
 		</ul>
-		<!-- BEGIN n_roles -->
-			<!-- IF .n_roles.n_recruit -->
-				<ul class="topiclist">
-					<li class="bg1">{n_roles.NAME}
-						<ul class="topiclist">
-						<!-- BEGIN n_recruit -->
-							<li class="bg1">{n_roles.n_recruit.CLASS}</li>
-						<!-- END n_recruit -->
-						</ul>
-					</li>
-				</ul>
-			<!-- ENDIF -->
-		<!-- END n_roles -->
+		<!-- IF S_RECRUITMENT_ACTIVE -->
+			<!-- BEGIN n_roles -->
+				<!-- IF .n_roles.n_recruit -->
+					<ul class="topiclist">
+						<li class="bg1">{n_roles.NAME}
+							<ul class="topiclist">
+							<!-- BEGIN n_recruit -->
+								<li class="bg1">{n_roles.n_recruit.CLASS}</li>
+							<!-- END n_recruit -->
+							</ul>
+						</li>
+					</ul>
+				<!-- ENDIF -->
+			<!-- END n_roles -->
+		<!-- ELSE -->
+			<ul class="topiclist">
+				<li class="bg1">{L_NO_RECRUITMENT}</li>
+			</ul>
+		<!-- ENDIF -->
 	<span class="corners-bottom"><span></span></span></div>
 </div>
 <!-- ENDIF -->
