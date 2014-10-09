@@ -16,7 +16,7 @@ class main_listener implements EventSubscriberInterface
 	{
 		return array(
 			'core.user_setup' => 'load_language_on_setup',
-			'core.page_header' => 'add_page_header_link',
+			'core.page_header' => 'create_recruitment_block',
 		);
 	}
 
@@ -48,10 +48,12 @@ class main_listener implements EventSubscriberInterface
 		$event['lang_set_ext'] = $lang_set_ext;
 	}
 
-	public function add_page_header_link($event)
+	public function create_recruitment_block($event)
 	{
+		global $db, $user, $config;
+		
 		$this->template->assign_vars(array(
-			'U_RECRUITMENT_PAGE'	=> $this->helper->route('clausi_recruitment_controller', array('name' => 'index')),
+			'S_RECRUITMENT_BLOCK_ACTIVE' => $config['clausi_recruitment_active']
 		));
 	}
 }

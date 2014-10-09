@@ -1,3 +1,8 @@
+parameters:
+    tables.clausi.rcm_recruit: %core.table_prefix%rcm_recruit
+    tables.clausi.rcm_schema: %core.table_prefix%rcm_schema
+    tables.clausi.rcm_schema_data: %core.table_prefix%rcm_schema_data
+
 services:
     clausi.recruitment.controller:
         class: clausi\recruitment\controller\main

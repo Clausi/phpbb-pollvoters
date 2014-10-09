@@ -1,3 +1,0 @@
-clausi_recruitment_controller:
-    pattern: /recruitment/{name}
-    defaults: { _controller: clausi.recruitment.controller:handle }

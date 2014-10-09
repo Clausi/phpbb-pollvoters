@@ -32,17 +32,4 @@ class main
 		$this->user = $user;
 	}
 
-	/**
-	* Recruitment controller for route /recruitment/{name}
-	*
-	* @param string		$name
-	* @return \Symfony\Component\HttpFoundation\Response A Symfony Response object
-	*/
-	public function handle($name)
-	{
-		$l_message = !$this->config['clausi_recruitment_goodbye'] ? 'RECRUITMENT_HELLO' : 'RECRUITMENT_GOODBYE';
-		$this->template->assign_var('RECRUITMENT_MESSAGE', $this->user->lang($l_message, $name));
-
-		return $this->helper->render('recruitment_body.html', $name);
-	}
 }

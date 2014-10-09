@@ -1,0 +1,59 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_ACP_RECRUITMENT}</h1>
+<!-- BEGIN roles -->
+	<!-- IF roles.recruit -->
+	<table class="table1">
+		<col class="row1" /><col class="row1" /><col class="row2" />
+	<thead>
+		<tr>
+			<th colspan="2">{roles.NAME}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<!-- BEGIN recruit -->
+			<tr>
+				<td class="forum-desc">
+					<strong>{roles.recruit.CLASS}</strong>
+					<br /><span>{roles.recruit.URGENCY}</span>
+				</td>
+				<td class="actions">
+					<a href="{recruit.U_DELETE}">{ICON_DELETE}</a>
+				</td>
+			</tr>
+		<!-- END recruit -->
+	</tbody>
+	</table>
+	<!-- ENDIF -->
+<!-- END roles -->
+
+<form id="recruitment" method="post" action="{U_ACTION}">
+
+<fieldset class="quick">
+	<input type="hidden" name="action" value="add" />
+	<input type="hidden" name="schema" value="{RECRUITMENT_SCHEMA_ID}" />
+
+	<select name="role">
+		<!-- BEGIN roles -->
+			<option value="{roles.ID}">{roles.NAME}</option>
+		<!-- END roles -->
+	</select>
+	
+	<select name="class">
+		<!-- BEGIN classes -->
+			<option value="{classes.ID}">{classes.NAME}</option>
+		<!-- END classes -->
+	</select>
+	
+	<select name="urgency">
+		<option value="0">{L_RECRUITMENT_LOW}</option>
+		<option value="1">{L_RECRUITMENT_MID}</option>
+		<option value="2">{L_RECRUITMENT_HIGH}</option>
+	</select>
+	
+	<input class="button2" name="addrecruit" type="submit" value="{L_ACP_ADD_RECRUIT}" />
+	{S_FORM_TOKEN}
+</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->
