@@ -25,15 +25,7 @@ class release_0_0_1 extends \phpbb\db\migration\migration
 				'ACP_RECRUITMENT_TITLE',
 				array(
 					'module_basename'	=> '\clausi\recruitment\acp\main_module',
-					'modes'				=> array('settings'),
-				),
-			)),
-			array('module.add', array(
-				'acp',
-				'ACP_RECRUITMENT_TITLE',
-				array(
-					'module_basename'	=> '\clausi\recruitment\acp\main_module',
-					'modes'				=> array('recruitment'),
+					'modes'				=> array('settings', 'recruitment'),
 				),
 			)),
 			
