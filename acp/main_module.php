@@ -26,13 +26,26 @@ class main_module
 				}
 
 				$config->set('clausi_recruitment_active', $request->variable('clausi_recruitment_active', 0));
+				$config->set('clausi_recruitment_schema', $request->variable('clausi_recruitment_schema', 1));
 
 				trigger_error($user->lang('ACP_RECRUITMENT_SETTING_SAVED') . adm_back_link($this->u_action));
 			}
+			
+			$sql = "SELECT * FROM " . $phpbb_container->getParameter('tables.clausi.rcm_schema') . " ORDER BY id";
+			$result = $db->sql_query($sql);
+			while($row = $db->sql_fetchrow($result))
+			{
+				$template->assign_block_vars('n_schema', array(
+					'ID' => $row['id'],
+					'NAME' => $row['name']
+				));
+			}
+			$db->sql_freeresult($result);
 
 			$template->assign_vars(array(
 				'U_ACTION' => $this->u_action,
 				'CLAUSI_RECRUITMENT_ACTIVE' => $config['clausi_recruitment_active'],
+				'CLAUSI_RECRUITMENT_SCHEMA' => $config['clausi_recruitment_schema'],
 			));
 		}
 		elseif($mode === 'recruitment')
@@ -40,6 +53,8 @@ class main_module
 			$this->tpl_name = 'recruitment_recruit';
 			$this->page_title = $user->lang('ACP_RECRUITMENT');
 			add_form_key('clausi/recruitment');
+			
+			$schema_id = $config['clausi_recruitment_schema'];
 			
 			if($request->is_set('action') && $request->is_set('recruit_id'))
 			{
@@ -63,7 +78,7 @@ class main_module
 				}
 				
 				$sql_ary = array(
-					'schema_id' => $request->variable('schema_id', 1),
+					'schema_id' => $schema_id,
 					'role' => $request->variable('role', 0),
 					'class' => $request->variable('class', 0),
 					'urgency' => $request->variable('urgency', 0),
@@ -74,7 +89,6 @@ class main_module
 				trigger_error($user->lang('ACP_RECRUITMENT_RECRUIT_ADD') . adm_back_link($this->u_action));
 			}
 			
-			$schema_id = 1;
 			$active_recruitment = false;
 			
 			$sql = "SELECT * FROM " . $phpbb_container->getParameter('tables.clausi.rcm_schema_data') . " WHERE schema_id = '".$schema_id."'";

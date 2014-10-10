@@ -26,4 +26,5 @@ $lang = array_merge($lang, array(
 	'ACP_RECRUITMENT_RECRUIT_ADD' => 'Recruit has been added successfully!',
 	'ACP_RECRUITMENT_RECRUIT_DELETE' => 'Recruit has been deleted successfully!',
 	'ACP_ADD_RECRUIT' => 'Add',
+	'ACP_RECRUITMENT_SCHEMA' => 'Recruitment schema',
 ));

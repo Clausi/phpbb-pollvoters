@@ -3,8 +3,8 @@
 	"type": "phpbb-extension",
 	"description": "Guild recruitment block.",
 	"homepage": "https://github.com/Clausi/phpbb-recruitment/",
-	"version": "0.0.1",
-	"time": "2014-10-09",
+	"version": "1.0.0",
+	"time": "2014-10-10",
 	"keywords": ["phpbb", "extension", "recruitment", "guild"],
 	"license": "GPL-2.0",
 	"authors": [

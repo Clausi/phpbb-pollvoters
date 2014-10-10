@@ -52,7 +52,7 @@ class main_listener implements EventSubscriberInterface
 	{
 		global $db, $user, $config, $phpbb_container;
 		
-		$schema_id = 1;
+		$schema_id = $config['clausi_recruitment_schema'];
 		$active_recruitment = false;
 		
 		$sql = "SELECT * FROM " . $phpbb_container->getParameter('tables.clausi.rcm_schema_data') . " WHERE schema_id = '".$schema_id."'";
