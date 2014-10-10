@@ -1,29 +1,30 @@
 <!-- IF S_RECRUITMENT_BLOCK_ACTIVE -->
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><a href="http://www.wowprogress.com/guild/{REGION}/{REALM}/{GUILD}" title="{GUILD} - Rekrutierung">{L_RECRUITMENT_TITLE}</a></h3>
+		<h3 class="panel-title">{L_RECRUITMENT_TITLE}</h3>
 	</div>
-	<div class="panel-body">
-		<!-- IF S_RECRUITMENT_ACTIVE -->
-			<!-- BEGIN n_roles -->
-				<!-- IF .n_roles.n_recruit -->
-					<div class="panel panel-default">
-						<div class="panel-heading"><h3 class="panel-title">{n_roles.NAME}</h3></div>
-							<ul class="list-group">
-								<!-- BEGIN n_recruit -->
-									<li class="list-group-item no-bg">
-										<span class="badge">{n_roles.n_recruit.URGENCY}</span>
-										{n_roles.n_recruit.CLASS}
-									</li>
-								<!-- END n_recruit -->
-							</ul>
-						</div>
-				<!-- ENDIF -->
-			<!-- END n_roles -->
-		<!-- ELSE -->
+	<!-- IF not S_RECRUITMENT_ACTIVE -->
+		<div class="panel-body">
 			{L_NO_RECRUITMENT}
-		<!-- ENDIF -->
-	</div>
+		</div>
+	<!-- ENDIF -->
+	<!-- IF S_RECRUITMENT_ACTIVE -->
+		<!-- BEGIN n_roles -->
+			<!-- IF .n_roles.n_recruit -->
+				<ul class="list-group">
+					<li class="list-group-item">
+						<h4 class="panel-title">{n_roles.NAME}</h4>
+					</li>
+					<!-- BEGIN n_recruit -->
+						<li class="list-group-item no-bg">
+							<span class="badge">{n_roles.n_recruit.URGENCY}</span>
+							{n_roles.n_recruit.CLASS}
+						</li>
+					<!-- END n_recruit -->
+				</ul>
+			<!-- ENDIF -->
+		<!-- END n_roles -->
+	<!-- ENDIF -->
 	<!-- IF S_STARTPAGE -->
 		<div class="panel-footer">
 			<a href="apply.php" title="Bewerbung">Bewerbung im Forum</a> oder schreibt uns persönlich an!
