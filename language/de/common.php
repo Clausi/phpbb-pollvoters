@@ -27,4 +27,5 @@ $lang = array_merge($lang, array(
 	'ACP_RECRUITMENT_RECRUIT_DELETE' => 'Rekrutierung wurde erfolgreich gelöscht!',
 	'ACP_ADD_RECRUIT' => 'Hinzufügen',
 	'ACP_RECRUITMENT_SCHEMA' => 'Rekrutierungsschema',
+	'ACL_A_RECRUITMENT' => 'Darf Rekrutierung verwalten.',
 ));

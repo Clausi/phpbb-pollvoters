@@ -17,7 +17,12 @@ class release_1_0_0 extends \phpbb\db\migration\migration
 			
 			array('custom', array(array($this, 'add_recruitment_schema'))),
 			array('custom', array(array($this, 'add_recruitment_schema_data'))),
-
+			
+			// Add permission
+			array('permission.add', array('a_recruitment', true)),
+			// Set permissions
+			array('permission.permission_set', array('ROLE_ADMIN_FULL', 'a_recruitment')),
+			array('permission.permission_set', array('ROLE_ADMIN_STANDARD', 'a_recruitment')),
 		);
 	}
 	

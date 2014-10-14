@@ -17,6 +17,8 @@ class main_listener implements EventSubscriberInterface
 		return array(
 			'core.user_setup' => 'load_language_on_setup',
 			'core.page_header' => 'create_recruitment_block',
+			// ACP event
+			'core.permissions'	=> 'add_permission',
 		);
 	}
 
@@ -36,6 +38,13 @@ class main_listener implements EventSubscriberInterface
 	{
 		$this->helper = $helper;
 		$this->template = $template;
+	}
+	
+	public function add_permission($event)
+	{
+		$permissions = $event['permissions'];
+		$permissions['a_recruitment'] = array('lang' => 'ACL_A_RECRUITMENT', 'cat' => 'misc');
+		$event['permissions'] = $permissions;
 	}
 
 	public function load_language_on_setup($event)

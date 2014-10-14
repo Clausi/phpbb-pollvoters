@@ -11,8 +11,8 @@ class main_info
 			'title'		=> 'ACP_RECRUITMENT_TITLE',
 			'version'	=> '1.0.0',
 			'modes'		=> array(
-				'settings'	=> array('title' => 'ACP_RECRUITMENT_SETTINGS', 'auth' => 'ext_clausi/recruitment && acl_a_board', 'cat' => array('ACP_RECRUITMENT_TITLE')),
-				'recruitment'	=> array('title' => 'ACP_RECRUITMENT', 'auth' => 'ext_clausi/recruitment && acl_a_board', 'cat' => array('ACP_RECRUITMENT_TITLE')),
+				'settings'	=> array('title' => 'ACP_RECRUITMENT_SETTINGS', 'auth' => 'ext_clausi/recruitment && acl_a_recruitment', 'cat' => array('ACP_RECRUITMENT_TITLE')),
+				'recruitment'	=> array('title' => 'ACP_RECRUITMENT', 'auth' => 'ext_clausi/recruitment && acl_a_recruitment', 'cat' => array('ACP_RECRUITMENT_TITLE')),
 			),
 		);
 	}
