@@ -49,7 +49,9 @@ class release_1_0_0 extends \phpbb\db\migration\migration
 			(2, 'class', 'Schurke'),
 			(2, 'class', 'Schamane'),
 			(2, 'class', 'Hexenmeister'),
-			(2, 'class', 'Krieger');";
+			(2, 'class', 'Krieger'),
+			(2, 'role', 'Alle'),
+			(2, 'class', 'Alle');";
 		$result = $this->db->sql_query($sql);
 	}
 

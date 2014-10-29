@@ -118,7 +118,9 @@ class release_0_0_1 extends \phpbb\db\migration\migration
 			(1, 'class', 'Rogue'),
 			(1, 'class', 'Shaman'),
 			(1, 'class', 'Warlock'),
-			(1, 'class', 'Warrior');";
+			(1, 'class', 'Warrior'),
+			(1, 'class', 'All'),
+			(1, 'role', 'All');";
 		$result = $this->db->sql_query($sql);
 	}
 
