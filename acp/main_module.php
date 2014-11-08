@@ -27,6 +27,7 @@ class main_module
 
 				$config->set('clausi_recruitment_active', $request->variable('clausi_recruitment_active', 0));
 				$config->set('clausi_recruitment_schema', $request->variable('clausi_recruitment_schema', 1));
+				$config->set('clausi_recruitment_include', $request->variable('clausi_recruitment_include', 0));
 
 				trigger_error($user->lang('ACP_RECRUITMENT_SETTING_SAVED') . adm_back_link($this->u_action));
 			}
@@ -46,6 +47,7 @@ class main_module
 				'U_ACTION' => $this->u_action,
 				'CLAUSI_RECRUITMENT_ACTIVE' => $config['clausi_recruitment_active'],
 				'CLAUSI_RECRUITMENT_SCHEMA' => $config['clausi_recruitment_schema'],
+				'RECRUITMENT_INLCUDE' => $config['clausi_recruitment_include'],
 			));
 		}
 		elseif($mode === 'recruitment')

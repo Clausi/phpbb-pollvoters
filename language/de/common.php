@@ -28,4 +28,5 @@ $lang = array_merge($lang, array(
 	'ACP_ADD_RECRUIT' => 'Hinzufügen',
 	'ACP_RECRUITMENT_SCHEMA' => 'Rekrutierungsschema',
 	'ACL_A_RECRUITMENT' => 'Darf Rekrutierung verwalten.',
+	'ACP_RECRUITMENT_INCLUDE' => 'Binde in Forumpost ein (Forenpost Id)',
 ));

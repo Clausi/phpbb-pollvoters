@@ -114,6 +114,7 @@ class main_listener implements EventSubscriberInterface
 		
 		$this->template->assign_vars(array(
 			'S_RECRUITMENT_BLOCK_ACTIVE' => $config['clausi_recruitment_active'],
+			'RECRUITMENT_INLCUDE' => $config['clausi_recruitment_include'],
 			'S_RECRUITMENT_ACTIVE' => $active_recruitment,
 		));
 	}
