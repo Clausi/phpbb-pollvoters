@@ -91,12 +91,14 @@ class main_listener implements EventSubscriberInterface
 					switch($row_recruit['urgency']) {
 						case 0:
 							$urgency = $user->lang('RECRUITMENT_LOW');
-							break;
+						break;
 						case 1:
 							$urgency = $user->lang('RECRUITMENT_MID');
-							break;
-						default:
+						break;
+						case 2:
 							$urgency = $user->lang('RECRUITMENT_HIGH');
+						break;
+						default: $urgency = $user->lang('RECRUITMENT_DEFAULT');
 					}
 					
 					$this->template->assign_block_vars('n_roles.n_recruit', array(

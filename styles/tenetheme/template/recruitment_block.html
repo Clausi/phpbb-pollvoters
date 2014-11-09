@@ -16,7 +16,7 @@
 					</li>
 					<!-- BEGIN n_recruit -->
 						<li class="list-group-item no-bg">
-							<span class="badge">{n_roles.n_recruit.URGENCY}</span>
+							<span class="badge <!-- IF n_recruit.URGENCY_ID == 0 -->badge-success<!-- ELSEIF n_recruit.URGENCY_ID == 1 -->badge-warning<!-- ELSEIF n_recruit.URGENCY_ID == 2 -->badge-danger<!-- ENDIF -->">{n_roles.n_recruit.URGENCY}</span>
 							{n_roles.n_recruit.CLASS}
 						</li>
 					<!-- END n_recruit -->

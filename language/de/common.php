@@ -16,6 +16,7 @@ $lang = array_merge($lang, array(
 	'RECRUITMENT_LOW' => 'Niedrig',
 	'RECRUITMENT_MID' => 'Mittel',
 	'RECRUITMENT_HIGH' => 'Hoch',
+	'RECRUITMENT_DEFAULT' => 'Default',
 	'NO_RECRUITMENT' => 'Rekrutierung ist geschlossen.',
 
 	'ACP_RECRUITMENT_TITLE' => 'Rekrutierung Modul',
