@@ -1,4 +1,4 @@
-phpbb-recruitment
+phpbb-pollvoters
 ================
 
-guild recruitment extension for phpbb 3.1
+show voters for moderators extension for phpbb 3.1

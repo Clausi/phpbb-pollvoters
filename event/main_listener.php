@@ -1,6 +1,6 @@
 <?php
 
-namespace clausi\recruitment\event;
+namespace clausi\pollvoters\event;
 
 /**
 * @ignore
@@ -16,108 +16,87 @@ class main_listener implements EventSubscriberInterface
 	{
 		return array(
 			'core.user_setup' => 'load_language_on_setup',
-			'core.page_header' => 'create_recruitment_block',
+			'core.viewtopic_assign_template_vars_before' => 'get_pollvoters',
 			// ACP event
 			'core.permissions'	=> 'add_permission',
 		);
 	}
 
-	/* @var \phpbb\controller\helper */
 	protected $helper;
-
-	/* @var \phpbb\template\template */
+	protected $db;
 	protected $template;
+	protected $auth;
 
-	/**
-	* Constructor
-	*
-	* @param \phpbb\controller\helper	$helper		Controller helper object
-	* @param \phpbb\template			$template	Template object
-	*/
-	public function __construct(\phpbb\controller\helper $helper, \phpbb\template\template $template)
+	public function __construct(\phpbb\controller\helper $helper, \phpbb\db\driver\driver_interface $db, \phpbb\template\template $template, \phpbb\auth\auth $auth)
 	{
 		$this->helper = $helper;
+		$this->db = $db;
 		$this->template = $template;
+		$this->auth = $auth;
 	}
+	
 	
 	public function add_permission($event)
 	{
 		$permissions = $event['permissions'];
-		$permissions['a_recruitment'] = array('lang' => 'ACL_A_RECRUITMENT', 'cat' => 'misc');
+		$permissions['m_pollvoters'] = array('lang' => 'ACL_M_POLLVOTERS', 'cat' => 'misc');
 		$event['permissions'] = $permissions;
 	}
 
+	
 	public function load_language_on_setup($event)
 	{
 		$lang_set_ext = $event['lang_set_ext'];
 		$lang_set_ext[] = array(
-			'ext_name' => 'clausi/recruitment',
+			'ext_name' => 'clausi/pollvoters',
 			'lang_set' => 'common',
 		);
 		$event['lang_set_ext'] = $lang_set_ext;
 	}
 
-	public function create_recruitment_block($event)
+	
+	public function get_pollvoters($event)
 	{
 		global $db, $user, $config, $phpbb_container;
 		
-		$schema_id = $config['clausi_recruitment_schema'];
-		$active_recruitment = false;
-		
-		$sql = "SELECT * FROM " . $phpbb_container->getParameter('tables.clausi.rcm_schema_data') . " WHERE schema_id = '".$schema_id."'";
-		$result = $db->sql_query($sql);
-		
-		while($row = $db->sql_fetchrow($result))
+		$local = $event;
+		if($local['topic_data']['poll_start'] > 0)
 		{
-			if($row['type'] === 'role')
+			$topic_id = $local['topic_data']['topic_id'];
+			
+			$sql = "SELECT user_id, username FROM " . $phpbb_container->getParameter('tables.users') . "";
+			$result = $this->db->sql_query($sql);
+			while($row_user = $db->sql_fetchrow($result))
 			{
-				$this->template->assign_block_vars('n_roles', array(
-					'ID' => $row['id'],
-					'NAME' => $row['name']
-				));
+				$user_ary[$row_user['user_id']] = $row_user['username'];
 				
-				$sql = "SELECT * FROM " . $phpbb_container->getParameter('tables.clausi.rcm_recruit') . " WHERE schema_id = '".$schema_id."' AND role = '".$row['id']."' ORDER BY class";
-				$result_recruit = $db->sql_query($sql);
-				while($row_recruit = $db->sql_fetchrow($result_recruit))
-				{
-					$active_recruitment = true;
-					
-					$sql = "SELECT * FROM " . $phpbb_container->getParameter('tables.clausi.rcm_schema_data') . " WHERE schema_id = '".$schema_id."' AND type = 'class' AND id = '".$row_recruit['class']."'";
-					$result_class = $db->sql_query($sql);
-					$row_class = $db->sql_fetchrow($result_class);
-					$class_name = $row_class['name'];
-					$db->sql_freeresult($result_class);
-					
-					switch($row_recruit['urgency']) {
-						case 0:
-							$urgency = $user->lang('RECRUITMENT_LOW');
-						break;
-						case 1:
-							$urgency = $user->lang('RECRUITMENT_MID');
-						break;
-						case 2:
-							$urgency = $user->lang('RECRUITMENT_HIGH');
-						break;
-						default: $urgency = $user->lang('RECRUITMENT_DEFAULT');
-					}
-					
-					$this->template->assign_block_vars('n_roles.n_recruit', array(
-						'ID' => $row_recruit['id'],
-						'ROLE' => $row['name'],
-						'CLASS' => $class_name,
-						'URGENCY_ID' => $row_recruit['urgency'],
-						'URGENCY' => $urgency,
-					));
-				}
-				
-				$db->sql_freeresult($result_recruit);
 			}
+			$db->sql_freeresult($result);
+			
+			$sql = "SELECT * FROM " . $phpbb_container->getParameter('tables.poll_votes') . " WHERE ".$db->sql_build_array('SELECT', array('topic_id' => $topic_id))."";
+			$result = $this->db->sql_query($sql);
+			while($row_votes = $db->sql_fetchrow($result))
+			{
+				$this->template->assign_block_vars('pollvoters', array(
+					'POLL_OPTION_ID' => $row_votes['poll_option_id'],
+					'VOTE_USER_ID' => $row_votes['vote_user_id'],
+					'VOTE_USER_NAME' => $user_ary[$row_votes['vote_user_id']],
+				));
+			}
+			$db->sql_freeresult($result);
+			
+			$this->template->assign_vars(array(
+				'M_POLLVOTERS' => $this->auth->acl_get('m_pollvoters'),
+			));
 		}
-		
-		$this->template->assign_vars(array(
-			'S_RECRUITMENT_BLOCK_ACTIVE' => $config['clausi_recruitment_active'],
-			'RECRUITMENT_INLCUDE' => $config['clausi_recruitment_include'],
-			'S_RECRUITMENT_ACTIVE' => $active_recruitment,
-		));
 	}
+	
+	
+	private function var_display($var)
+	{
+		echo "<pre>";
+		print_r($var);
+		echo "</pre>";
+	}
+	
 }

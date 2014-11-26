@@ -1,11 +1,11 @@
 {
-	"name": "clausi/recruitment",
+	"name": "clausi/pollvoters",
 	"type": "phpbb-extension",
-	"description": "Guild recruitment block.",
-	"homepage": "https://github.com/Clausi/phpbb-recruitment/",
+	"description": "show voters for moderators extension",
+	"homepage": "https://github.com/Clausi/phpbb-pollvoters/",
 	"version": "1.0.0",
-	"time": "2014-10-10",
-	"keywords": ["phpbb", "extension", "recruitment", "guild"],
+	"time": "2014-11-26",
+	"keywords": ["phpbb", "extension", "poll", "voters"],
 	"license": "GPL-2.0",
 	"authors": [
 		{
@@ -23,14 +23,14 @@
 		"phpbb/epv": "dev-master"
 	},
 	"extra": {
-		"display-name": "Recruitment Block",
+		"display-name": "Pollvoters",
 		"soft-require": {
 			"phpbb/phpbb": "3.1.*"
 		},
 		"version-check": {
-			"host": "recruitment.cklausi.de",
+			"host": "pollvoters.cklausi.de",
 			"directory": "/version",
-			"filename": "phpbb-recruitment.json"
+			"filename": "phpbb-pollvoters.json"
 		}
 	}
 }

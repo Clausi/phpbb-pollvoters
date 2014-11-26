@@ -1,6 +1,6 @@
 <?php
 
-namespace clausi\recruitment;
+namespace clausi\pollvoters;
 
 class ext extends \phpbb\extension\base
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace clausi\recruitment\controller;
+namespace clausi\pollvoters\controller;
 
 class main
 {
@@ -15,7 +15,7 @@ class main
 
 	/* @var \phpbb\user */
 	protected $user;
-
+	
 	/**
 	* Constructor
 	*
