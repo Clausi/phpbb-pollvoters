@@ -28,7 +28,7 @@
 			"phpbb/phpbb": "3.1.*"
 		},
 		"version-check": {
-			"host": "pollvoters.cklausi.de",
+			"host": "version.cklausi.de",
 			"directory": "/version",
 			"filename": "phpbb-pollvoters.json"
 		}
