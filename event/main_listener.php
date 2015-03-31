@@ -2,14 +2,8 @@
 
 namespace clausi\pollvoters\event;
 
-/**
-* @ignore
-*/
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-/**
-* Event listener
-*/
 class main_listener implements EventSubscriberInterface
 {
 	static public function getSubscribedEvents()
